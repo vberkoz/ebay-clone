@@ -9,8 +9,11 @@ import {
 import Header from "../components/Header";
 import { ListingType } from "@thirdweb-dev/sdk";
 import { BanknotesIcon, ClockIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Home: NextPage = () => {
+  const router = useRouter();
   const { contract } = useContract(
     process.env.NEXT_PUBLIC_MARKETPLACE_CONTRACT,
     "marketplace"
@@ -34,6 +37,7 @@ const Home: NextPage = () => {
               <div
                 className="flex flex-col card hover:scale-105 transition-all duration-150 ease-out"
                 key={listing.id}
+                onClick={() => router.push(`/listing/${listing.id}`)}
               >
                 <div className="flex flex-1 flex-col pb-2 items-center">
                   <MediaRenderer src={listing.asset.image} />
